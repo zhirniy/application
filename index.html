@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+            crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"
+            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+<div class="main">
+
+
+    <div class="sidebar">
+        <script type="text/javascript">
+            /* Открытие меню */
+            var main = function () { //главная функция
+                $('.icon-menu').click(function () {
+                    if ($('.sidebar').css('left') == '0px') {
+                        $('.sidebar').animate({left: '-235px'}, 300);
+                        $('body').animate({left: '0px'}, 300);
+                        $('.main').animate({width: '98.5%'}, 300);
+                    }
+                    else {
+                        $('.sidebar').animate({left: '0px'}, 300);
+                        $('body').animate({left: '235px'}, 300);
+                        $('.main').animate({width: '80%'}, 300);
+                    }
+                });
+            }
+            $(document).ready(main);
+
+
+        </script>
+        <br><br>
+       <!-- <img width="200px" src="img/logo.png">-->
+        <div id="authorization">
+
+        </div>
+
+        <p>Вы авторизованы как:</p>
+        <p>__________</p>
+        <p>
+            <button onclick="window.location.href='/Logout'">Выйти</button>
+        </p>
+        <br>
+        <br>
+        <p><a href="#">Регистрация договоров</a></p>
+        <p><a href="#">Подача заявок</a></p>
+        <p><a href="#">Транспорт</a></p>
+        <br>
+
+    </div>
+    <div class="content">
+        <div>
+            <img class="icon-menu" width="25px" src="img/menu.png">
+        </div>
+
+        <script language="JavaScript" type="text/javascript" src="js/ajax_requests.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/dynamicTable.js"></script>
+        <div class="req_head">
+            <fieldset>
+                <legend>Создать новую заявку</legend>
+                <form name="req_Add" id="req_Add">
+                    <table width="100%" border="0">
+                        <tbody>
+                        <tr>
+                            <td width="40%" align="right"><span>*</span>Тип заявки</td>
+                            <td width="60%" align="left"><select id="req_type" name="req_type">
+        <option>Закупка</option>
+        <option>Анализ цен</option>
+        <option>Транспортировка</option>
+        <option>Возврат/ремонт</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right"><span>*</span>Наименование объекта</td>
+                            <td align="left"><input id="partnerName" name="partnerName" type="text"></td>
+                        </tr>
+                        <tr>
+                            <td align="right">Описание объекта</td>
+                            <td align="left"><input id="partnerDesc" name="partnerDesc" type="text"></td>
+                        </tr>
+                        <tr>
+                            <td align="right">Адрес объекта</td>
+                            <td align="left"><input id="partnerAddr" name="partnerAddr" type="text"></td>
+                        </tr>
+                        <tr>
+                            <td align="right"><span>*</span>Плательщик</td>
+                            <td align="left"><select required id="companyName" name="companyName">
+                    <option disabled selected value="Выберите предприятие">Выберите предприятие</option>
+                    <option>ООО "Алгос"</option>
+                    <option>ООО "Техком-сервис"</option>
+                    <option>ООО "Техсервис-инжиниринг"</option>
+                </select></td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td align="right"><span>*</span>Доставка</td>
+                            <td align="left"><select required id="req_delivery_dest" name="req_delivery_dest">
+                    <option disabled selected value="Выберите предприятие">Выберите пункт доставки</option>
+                    <option>Офис</option>
+                    <option>Объект</option>
+                </select></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">Закупка до</td>
+                            <td align="left"><input id="req_buy_time" name="req_buy_time" type="datetime-local"></td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td align="right">Доставка до</td>
+                            <td align="left"><input id="req_delivery_time" name="req_delivery_time" type="datetime-local"></td>
+                        </tr>
+                                                <tr>
+                            <td align="right"></td>
+                            <td align="left"></td>
+                        </tr>
+                        <tr>
+                            <td align="right"></td>
+                            <td align="left"><button type="button" id="req_add_btn">Создать заявку</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                   <br>
+                </form>
+            </fieldset>
+        </div>
+
+        <div class="req_body">
+            <fieldset>
+                <legend>Заявка</legend>
+                <br>
+                <form method="post" action="">
+                    <table id="t_equipment_add" width="100%" border="1" cellspacing="0" cellpadding="0">
+                        <thead>
+                        <tr>
+                            <th width="2%" scope="col">№</th>
+                            <th width="10%" scope="col">Тип</th>
+                            <th width="5%" scope="col">Код</th>
+                            <th width="27%" scope="col">Наименование</th>
+                            <th width="2%" scope="col">Ед.изм</th>
+                            <th width="5%" scope="col">Кол-во</th>
+                            <th width="5%" scope="col">Цена</th>
+                            <th width="5%" scope="col">Сумма</th>
+                            <th width="10%" scope="col">Тип оплаты</th>
+                            <th width="10%" scope="col">Комментарий</th>
+                            <th width="5%" scope="col">Поставщик</th>
+                            <th width="5%" scope="col">Счет</th>
+                            <th style="border: 0" width="6%" scope="col">&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody id="dynamic">
+                        <tr>
+                            <td><!--№-->
+                            </td>
+                            <td><!--Тип-->
+                                <input type="text">
+                            </td>
+                            <td><!--Код-->
+                                <input type="text">
+                            </td>
+                            <td><!--Наименование-->
+                                <input type="text">
+                            </td>
+                            <td><!--Ед.изм-->
+                                <select>
+                                    <option selected value="шт.">шт.</option>
+                                    <option value="м.">м.</option>
+                                    <option value="л.">л.</option>
+                                    <option value="л.">кг.</option>
+                                </select>
+                            </td>
+                            <td><!--Кол-во-->
+                                <input name="equipment_req_num" class="equipment_req_num" type="number" min="0.01"
+                                       step="0.01" value="1" onchange='calculate_sum(event);calculate_sum(event);sum();' onblur="value=value?value:'0.00'">
+                            </td>
+                            <td><!--Цена-->
+                                <input name="equipment_req_price" class="equipment_req_price" type="text" value="0.00" step="0.01" onblur="value=value?value:'0.00'">
+                            </td>
+                            <td><!--Сумма-->
+                                <input name="equipment_req_sum" readonly class="equipment_req_sum" type="text" value="0.00" onchange="sum()">
+                            </td>
+                            <td><!--Тип оплаты-->
+                                <select>
+                                    <option disabled selected value="Тип оплаты">Тип оплаты</option>
+                                    <option value="Нал.">Нал.</option>
+                                    <option value="Безнал.">Безнал.</option>
+                                </select>
+                            </td>
+                            <td><!--Коментарий-->
+                                <input type="text">
+                            </td>
+                            <td><!--Поставщик-->
+                                <input type="text" placeholder="Поиск">
+                            </td>
+                            <td><!--Счет-->
+                                <input type="text">
+                            </td>
+                            
+                           
+                            <td style="border: 0; text-align:center">
+                                <button type="button" class="row_add">+</button>
+                                <button type="button" class="row_del">-</button>
+                            </td>
+                        </tr>
+                         <tr>
+                         <td><!--номер-->
+                                <input type="text">
+                            </td>
+                         <td><!--Тип-->
+                                <input type="text">
+                            </td>
+                            <td><!--Код-->
+                                <input type="text">
+                            </td>
+                            <td><!--Найменование-->
+                                <input type="text">
+                            </td>
+                            <td><!--Ед-->
+                                <input type="text"  value="Всего:" >
+                            </td>
+                            <td><!--Кол-во-->
+                                <input type="text" id="sum_req_num" readonly>
+                            </td>
+                            <td><!--Цена-->
+                                <input type="text" id="sum_req_price" readonly value="0.00">
+                            </td>
+                            <td><!--Сумма-->
+                                <input type="text" id="sum_req_sum" readonly value="0.00">
+                            </td>
+                            <td><!--Тип оплаты-->
+                                <input type="text">
+                            </td>
+                            <td><!--Коментарий-->
+                                <input type="text">
+                            </td>
+                            <td><!--Поставщик-->
+                                <input type="text">
+                            </td>
+                            <td><!--Счет-->
+                                <input type="text">
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <script>
+                        new DynamicTable(document.getElementById("dynamic"));
+                    </script>
+                    <input name="sub" type="submit" value="SEND" style="margin: 10px">
+                </form>
+                <div id="result"></div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="footer">
+        <p>ООО Техком-сервис. Все права защищены <span id="year"></span>
+            <script type="text/javascript">
+                var date = new Date();
+                $("#year").text(date.getFullYear())
+            </script>
+        </p>
+    </div>
+</div>
+</body>
+</html>

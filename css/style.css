@@ -1,0 +1,239 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+    left: 235px;
+    margin: 0;
+    font-family: sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.contractAdd td{
+
+
+}
+
+.contractAdd textarea{
+    width: 218px;
+    resize: none;
+}
+
+.sidebar input {
+    margin-top: 5px;
+}
+
+.addClients {
+    top: 10%;
+    left: 50%;
+    display: none;
+    position: fixed;
+    z-index: 10;
+    background-color: #e2e2e2;
+    width: 25%;
+    hight: 15%
+}
+
+.container {
+    display: block;
+}
+
+.sidebar a, .sidebar p {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: smaller;
+    padding-left: 20px;
+}
+
+.sidebar {
+
+    display: inline;
+    line-height: 50%;
+    background-color: #00334D;
+    position: fixed;
+    left: 0px;
+    float: left;
+    width: 225px;
+    height: 100vh;
+    text-align: left;
+    padding-left: 10px;
+/ / -webkit-transition: left 0.4 s ease-in-out;
+/ / -moz-transition: left 0.4 s ease-in-out;
+/ / -ms-transition: left 0.4 s ease-in-out;
+/ / -o-transition: left 0.4 s ease-in-out;
+/ / transition: left 0.4 s ease-in-out;
+}
+
+.sidebar.close-sidebar {
+    left: -100px;
+}
+
+.main {
+    display: block;
+    background-color: #FFFFFF;
+    float: left;
+    width: 80%;
+    min-height: 100%;
+    height: inherit;
+    position: relative;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+    /*	border-style: solid;
+        border-width: 1px;*/
+    padding-left: 10px;
+    padding-bottom: 20px;
+    margin: 10px 20px 20px 0px;
+    position: relative;
+}
+
+.contractView table, .req_body table {
+    width: 100%;
+    border-style: none;
+    border-width: 1px;
+    border-color: #6e6e6e;
+    border-collapse: collapse;
+}
+
+.contractView span {
+    font-size: small;
+}
+
+.contractView input {
+    width: 160px;
+}
+
+#title {
+    text-align: center;
+    background-color: #c9c9c9;
+}
+
+.contractView td, .req_body td {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #6e6e6e;
+}
+
+.t_contractId, .t_subject, .t_status, .t_document, .t_date {
+    text-align: center;
+}
+
+.t_contractId {
+    width: 10%;
+}
+
+.t_company{
+    width: 20%;
+}
+
+.t_status {
+    width: 10%;
+}
+
+.t_document {
+    width: 5%;
+}
+
+.t_date {
+    width: 15%;
+}
+
+.paging {
+    width: 100%;
+    text-align: center;
+}
+
+
+.footer {
+    font-size: small;
+    text-align: center;
+    width: 100%;
+    position: relative;
+}
+
+td {
+    font-size: small;
+    overflow:hidden;
+}
+
+.contractAdd input {
+    width: 220px;
+}
+
+#companyName {
+    width: 224px;
+}
+
+#user_reg_btn {
+    margin-left: 40%;
+}
+
+.contractAdd span, .req_head span {
+    color: red;
+}
+
+.pageNum {
+    margin: 20px 5px 5px 0px;
+    font-size: small;
+}
+
+#result button{
+    text-align: center;
+}
+
+#t_equipment_add th {
+    font-size: smaller;
+    font-weight: normal;
+}
+#t_equipment_add input, #t_equipment_add select {
+	font-size: smaller;
+    font-weight: normal;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	width: 100%;
+	border:none;
+}
+
+.req_head input{
+width: 220px;
+}
+
+
+ .req_head select  {
+    width: 224px;
+}
+
+button {
+    border-width:2px;
+    background-color: transparent;
+    border-style: solid;
+    border-color:#696969
+}
+.sidebar button{
+border-color: white;
+color: white;
+
+
+}
+
+.row_add {
+    height:20px;
+    width: 20px;
+    padding-left:4px;
+
+}
+
+.row_del {
+width: 20px;
+height:20px;
+    
+}
+
+.equipment_req_price[type="number"]::-webkit-outer-spin-button, .equipment_req_price[type="number"]::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
